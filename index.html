@@ -730,7 +730,7 @@ async function handleSubmit(e) {
   }
   btn.textContent='SENDING…'; btn.disabled=true; btn.style.opacity='0.7';
   try {
-    await emailjs.send('service_43y0c56', 'eyd5a72', {
+    await emailjs.send('service_43y0c56', 'template_eyd5a72', {
       from_name : `${fname} ${document.getElementById('lname').value.trim()}`.trim(),
       from_email: document.getElementById('email').value.trim(),
       phone,
