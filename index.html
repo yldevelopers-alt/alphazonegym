@@ -683,6 +683,10 @@
         </div>
       </div>
       <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" id="email" placeholder="you@example.com"/>
+      </div>
+      <div class="form-group">
         <label>Phone Number</label>
         <input type="tel" id="phone" placeholder="+91 00000 00000"/>
       </div>
@@ -713,15 +717,7 @@
 
 <script>
 // ── EmailJS ──
-// SETUP (free, 2 min): https://www.emailjs.com
-// 1. Create account → Add Gmail service → copy Service ID
-// 2. Create Template with: {{from_name}} {{phone}} {{interest}} {{message}}
-//    Set "To Email" = likhith2846@gmail.com
-// 3. Paste your keys below:
-const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
-if(typeof emailjs !== 'undefined') emailjs.init(EMAILJS_PUBLIC_KEY);
+emailjs.init('7uIo5n25kiJXkQHm2nN-p');
 
 async function handleSubmit(e) {
   e.preventDefault();
@@ -734,14 +730,15 @@ async function handleSubmit(e) {
   }
   btn.textContent='SENDING…'; btn.disabled=true; btn.style.opacity='0.7';
   try {
-    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+    await emailjs.send('service_43y0c56', 'eyd5a72', {
       from_name : `${fname} ${document.getElementById('lname').value.trim()}`.trim(),
-      phone, interest: document.getElementById('interest').value,
-      message: document.getElementById('message').value.trim() || 'No message',
-      to_email: 'likhith2846@gmail.com',
+      from_email: document.getElementById('email').value.trim(),
+      phone,
+      interest  : document.getElementById('interest').value,
+      message   : document.getElementById('message').value.trim() || 'No message',
     });
     btn.textContent='✓ ENQUIRY SENT!'; btn.style.background='#1a7a2a'; btn.style.opacity='1';
-    ['fname','lname','phone','message'].forEach(id=>document.getElementById(id).value='');
+    ['fname','lname','email','phone','message'].forEach(id=>document.getElementById(id).value='');
     setTimeout(()=>{btn.textContent='SEND ENQUIRY →';btn.style.background='';btn.disabled=false;},4000);
   } catch(err) {
     btn.textContent='✗ FAILED — TRY AGAIN'; btn.style.background='#7a1a1a'; btn.style.opacity='1'; btn.disabled=false;
