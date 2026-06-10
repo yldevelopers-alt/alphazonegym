@@ -741,6 +741,8 @@ async function handleSubmit(e) {
     ['fname','lname','email','phone','message'].forEach(id=>document.getElementById(id).value='');
     setTimeout(()=>{btn.textContent='SEND ENQUIRY →';btn.style.background='';btn.disabled=false;},4000);
   } catch(err) {
+    const msg = err?.text || err?.message || JSON.stringify(err);
+    alert('EmailJS Error: ' + msg);
     btn.textContent='✗ FAILED — TRY AGAIN'; btn.style.background='#7a1a1a'; btn.style.opacity='1'; btn.disabled=false;
     setTimeout(()=>{btn.textContent='SEND ENQUIRY →';btn.style.background=''},3500);
   }
